@@ -1,0 +1,44 @@
+.navLink a.active {
+  border-bottom: 2px solid red;
+}
+.navLink a {
+  font-size: 17px;
+  margin-right: 50px;
+  padding-bottom: 5px;
+}
+.loginBtn.active {
+  background: rgb(82, 4, 4);
+  color: white;
+}
+
+@media (max-width: 1656px) {
+  .navLink a {
+    font-size: 17px;
+    margin-right: 40px;
+    padding-bottom: 5px;
+  }
+}
+@media (max-width: 1300px) {
+  .navLink a {
+    font-size: 17px;
+    margin-right: 20px;
+    padding-bottom: 5px;
+  }
+  .navMenu {
+    width: 100%;
+    padding: 0 10px;
+  }
+  .navProfile {
+    margin-right: 0;
+  }
+}
+@media (max-width: 768px) {
+  .forTab {
+    display: flex;
+  }
+}
+@media (max-width: 700px) {
+  .forTab {
+    display: none;
+  }
+}

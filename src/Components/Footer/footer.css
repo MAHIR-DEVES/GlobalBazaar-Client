@@ -1,0 +1,36 @@
+ul a.active {
+  border-bottom: 3px solid red;
+}
+
+ul a {
+  font-size: 17px;
+  padding-bottom: 5px;
+  font-weight: 500;
+}
+@media (max-width: 425px) {
+  ul {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 2px !important;
+  }
+  ul li {
+    margin-top: 0;
+  }
+  .navLink a {
+    /* font-size: 17px !important; */
+    margin-right: 10px !important;
+    padding-bottom: 5px !important;
+  }
+}
+@media (max-width: 414px) {
+  ul {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 2px !important;
+  }
+  ul li {
+    margin-top: 0;
+  }
+}
