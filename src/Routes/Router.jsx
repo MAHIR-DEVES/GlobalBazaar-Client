@@ -13,6 +13,7 @@ import AllProduct from '../Pages/AllProduct/AllProduct';
 import AddProduct from '../Pages/AddProduct/AddProduct';
 import MyProduct from '../Pages/MyProduct/MyProduct';
 import Cart from '../Pages/Cart/Cart';
+import ProductCategories from '../Components/ProductCategories/ProductCategories';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: '/categories',
         Component: Categories,
+      },
+      {
+        path: '/category/:id',
+        Component: ProductCategories,
       },
       {
         path: '/allProduct',

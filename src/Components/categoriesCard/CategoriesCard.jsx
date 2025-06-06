@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const CategoriesCard = ({ category }) => {
   return (
@@ -19,9 +20,11 @@ const CategoriesCard = ({ category }) => {
             {category.category}
           </h2>
 
-          <button className="w-full py-2 bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 text-sm font-medium hover:bg-blue-50 dark:hover:bg-gray-600 transition-colors duration-200">
-            View all products
-          </button>
+          <Link to={`/category/${category._id}`}>
+            <button className="w-full py-2 bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 text-sm font-medium hover:bg-blue-50 dark:hover:bg-gray-600 transition-colors duration-200">
+              View all products
+            </button>
+          </Link>
         </div>
       </div>
     </div>
