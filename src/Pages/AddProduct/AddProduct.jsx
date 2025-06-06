@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 const AddProduct = () => {
   const [formData, setFormData] = useState({
@@ -60,6 +61,8 @@ const AddProduct = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const navigate = useNavigate();
+
   const handleSubmit = async e => {
     e.preventDefault();
 
@@ -69,8 +72,9 @@ const AddProduct = () => {
         console.log('Form data:', formData);
         // Simulate API call
         axios
-          .post(`${import.meta.env.VITE_API_URL}/products`, formData)
+          .post('http://localhost:3000/products', formData)
           .then(res => {
+            navigate('/allProduct');
             console.log(res);
           })
           .catch(err => {

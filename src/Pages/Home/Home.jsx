@@ -10,7 +10,7 @@ const Home = () => {
   TabTitle('GlobalBazaar - Home');
   const navigate = useNavigate();
   const categories = useLoaderData();
-  console.log(categories);
+  // console.log(categories);
 
   return (
     <div className="  bg-white dark:bg-gray-800 ">

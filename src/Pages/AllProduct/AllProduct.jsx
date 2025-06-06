@@ -5,7 +5,7 @@ import Cards from '../../Components/Cards/Cards';
 
 const AllProduct = () => {
   const products = useLoaderData();
-  console.log(products);
+  // console.log(products);
 
   return (
     <div className="flex justify-center ">

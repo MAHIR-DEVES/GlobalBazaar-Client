@@ -14,6 +14,7 @@ import AddProduct from '../Pages/AddProduct/AddProduct';
 import MyProduct from '../Pages/MyProduct/MyProduct';
 import Cart from '../Pages/Cart/Cart';
 import ProductCategories from '../Components/ProductCategories/ProductCategories';
+import ProductDetails from '../Components/ProductDetails/ProductDetails';
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-        loader: () => fetch('https://b11-assignment-11.vercel.app/categories'),
+        loader: () => fetch('http://localhost:3000/categories'),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
@@ -38,8 +39,13 @@ const router = createBrowserRouter([
       {
         path: '/allProduct',
         Component: AllProduct,
-        loader: () =>
-          fetch('https://b11-assignment-11.vercel.app/get-allProduct'),
+        loader: () => fetch('http://localhost:3000/get-allProduct'),
+      },
+      {
+        path: '/productDetails/:id',
+        Component: ProductDetails,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/singleProduct/${params.id}`),
       },
       {
         path: '/addProduct',
