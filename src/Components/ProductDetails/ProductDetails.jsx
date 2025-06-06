@@ -1,8 +1,12 @@
-import React from 'react';
-import { useLoaderData } from 'react-router';
+import React, { use } from 'react';
+import { useLoaderData, useNavigate } from 'react-router';
+import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
 
 const ProductDetails = () => {
+  const { user } = use(AuthContext);
+
   const singleData = useLoaderData();
+  const navigate = useNavigate();
   const {
     _id,
     imageUrl,
@@ -71,6 +75,13 @@ const ProductDetails = () => {
     return stars;
   };
 
+  //  handel order
+  const handleOrder = () => {
+    const modal = document.getElementById('my_modal_4');
+    if (modal) {
+      modal.showModal(); // this will open the modal
+    }
+  };
   return (
     <div className="bg-[#eef4ff] dark:bg-gray-800 min-h-screen py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
@@ -154,11 +165,77 @@ const ProductDetails = () => {
 
               <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <button className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200">
-                    Add to Cart
-                  </button>
-                  <button className="flex-1 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white font-medium py-3 px-6 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200">
+                  <button
+                    onClick={handleOrder}
+                    className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200"
+                  >
                     Buy Now
+                  </button>
+                  <div className="">
+                    <dialog id="my_modal_4" className="modal">
+                      <div className="modal-box w-11/12 max-w-5xl bg-[#eef4ff] dark:bg-gray-800 rounded-xl shadow-xl">
+                        <div className="flex flex-col space-y-6">
+                          <div className="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-4">
+                            <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+                              Confirm Your Order
+                            </h3>
+                            <form method="dialog">
+                              <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg ">
+                                close
+                              </button>
+                            </form>
+                          </div>
+
+                          <div className="space-y-4">
+                            <div>
+                              <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">
+                                Email
+                              </label>
+                              <input
+                                className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700 dark:text-gray-200 cursor-not-allowed"
+                                type="email"
+                                value={user.email}
+                                name="email"
+                                readOnly
+                              />
+                            </div>
+
+                            <div>
+                              <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">
+                                Full Name
+                              </label>
+                              <input
+                                className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700 dark:text-gray-200 cursor-not-allowed"
+                                type="text"
+                                value={user.displayName}
+                                name="displayName"
+                                readOnly
+                              />
+                            </div>
+                          </div>
+
+                          <div className="modal-action pt-4 border-t border-gray-200 dark:border-gray-700">
+                            <button
+                              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-[1.01] shadow-md hover:shadow-lg"
+                              onClick={() => {
+                                /* Add purchase logic here */
+                              }}
+                            >
+                              Complete Purchase
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <form method="dialog" className="modal-backdrop">
+                        <button>close</button>
+                      </form>
+                    </dialog>
+                  </div>
+                  <button
+                    onClick={() => navigate(-1)}
+                    className="flex-1 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white font-medium py-3 px-6 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+                  >
+                    Back
                   </button>
                 </div>
               </div>

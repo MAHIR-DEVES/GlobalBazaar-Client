@@ -40,10 +40,10 @@ const Home = () => {
         {/* Call to Action */}
         <div className="mt-16 text-center">
           <button
-            onClick={() => navigate('/browseListing')}
+            onClick={() => navigate('/allProduct')}
             className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 transition-colors duration-200"
           >
-            Browse All Post
+            Browse All Product
             <svg
               className="ml-3 -mr-1 h-5 w-5"
               fill="currentColor"
