@@ -1,13 +1,16 @@
 import React from 'react';
 import Slider from '../../Components/Slider/Slider';
-import { useNavigate } from 'react-router';
+import { useLoaderData, useNavigate } from 'react-router';
 
 import { TabTitle } from '../../Layouts/Utils/DynamicTitle/DynamicTitle';
 import { FaRegStarHalfStroke } from 'react-icons/fa6';
+import CategoriesCard from '../../Components/categoriesCard/CategoriesCard';
 
 const Home = () => {
   TabTitle('GlobalBazaar - Home');
   const navigate = useNavigate();
+  const categories = useLoaderData();
+  console.log(categories);
 
   return (
     <div className="  bg-white dark:bg-gray-800 ">
@@ -24,6 +27,14 @@ const Home = () => {
           <p className="text-lg dark:text-white text-blackmax-w-2xl mx-auto">
             Explore the most popular restaurant posts in your area
           </p>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+          {categories.map(category => (
+            <CategoriesCard
+              category={category}
+              key={category._id}
+            ></CategoriesCard>
+          ))}
         </div>
 
         {/* Call to Action */}
@@ -259,7 +270,7 @@ const Home = () => {
                   Browse Roommates →
                 </button>
                 <button
-                  onClick={navigate('/myListings')}
+                  onClick={navigate('/')}
                   className="border-2 border-white text-white hover:bg-white/10 py-3 px-8 text-lg font-medium rounded-md transition-all duration-300"
                 >
                   List Your Room

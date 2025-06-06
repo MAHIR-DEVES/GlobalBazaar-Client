@@ -19,13 +19,14 @@ const AddProduct = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const categories = [
-    'Electronics & Gadgets',
-    'Home & Kitchen Appliances',
-    'Fashion & Apparel',
-    'Industrial Machinery & Tools',
-    'Health & Beauty',
-    'Automotive Parts & Accessories',
-    'Office Supplies & Stationery',
+    'Electronics',
+    'Home',
+    'Fashion',
+    'Machinery',
+    'Health',
+    'Automotive',
+    'Office',
+    'Medicine',
   ];
 
   const handleChange = e => {
@@ -68,7 +69,7 @@ const AddProduct = () => {
         console.log('Form data:', formData);
         // Simulate API call
         axios
-          .post('http://localhost:3000/products', formData)
+          .post(`${import.meta.env.VITE_API_URL}/products`, formData)
           .then(res => {
             console.log(res);
           })

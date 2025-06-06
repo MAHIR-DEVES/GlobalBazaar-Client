@@ -23,7 +23,7 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-        loader: () => fetch('post.json'),
+        loader: () => fetch('https://b11-assignment-11.vercel.app/categories'),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
@@ -33,7 +33,8 @@ const router = createBrowserRouter([
       {
         path: '/allProduct',
         Component: AllProduct,
-        loader: () => fetch('http://localhost:3000/get-allProduct'),
+        loader: () =>
+          fetch('https://b11-assignment-11.vercel.app/get-allProduct'),
       },
       {
         path: '/addProduct',
