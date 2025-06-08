@@ -109,9 +109,8 @@ const ProductDetails = () => {
     };
 
     axios
-      .post('http://localhost:3000/saveOrder', orderData)
+      .post('http://localhost:3000/orders', orderData)
       .then(res => {
-        console.log(res.data);
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -124,8 +123,6 @@ const ProductDetails = () => {
       .catch(error => {
         console.log(error);
       });
-
-    console.log(orderData);
   };
 
   return (
