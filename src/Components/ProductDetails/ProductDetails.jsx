@@ -1,17 +1,19 @@
-import React, { use } from 'react';
+import React, { useState, use } from 'react';
 import { useLoaderData, useNavigate } from 'react-router';
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const ProductDetails = () => {
   const { user } = use(AuthContext);
-
   const singleData = useLoaderData();
   const navigate = useNavigate();
+  const [sellQuantity, setSellQuantity] = useState(50);
   const {
     _id,
     imageUrl,
     name,
-    mainQuantity,
+    quantity,
     minSellingQuantity,
     brand,
     category,
@@ -75,13 +77,57 @@ const ProductDetails = () => {
     return stars;
   };
 
-  //  handel order
-  const handleOrder = () => {
-    const modal = document.getElementById('my_modal_4');
+  // Handle modal open
+  const handleModalOpen = () => {
+    const modal = document.getElementById('order_modal');
     if (modal) {
-      modal.showModal(); // this will open the modal
+      modal.showModal();
     }
   };
+
+  // handelAddQuantity
+  const handelSumQuantity = () => {
+    setSellQuantity(sellQuantity => sellQuantity + 1);
+  };
+  // handelSubQuantity
+  const handelSubQuantity = () => {
+    setSellQuantity(sellQuantity => sellQuantity - 1);
+  };
+
+  // Handle order submission
+  const handleOrderSubmit = e => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const name = formData.get('name');
+    const email = formData.get('email');
+
+    const orderData = {
+      orderId: _id,
+      name: name,
+      customerEmail: email,
+      quantity: sellQuantity,
+    };
+
+    axios
+      .post('http://localhost:3000/saveOrder', orderData)
+      .then(res => {
+        console.log(res.data);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate('/cart');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    console.log(orderData);
+  };
+
   return (
     <div className="bg-[#eef4ff] dark:bg-gray-800 min-h-screen py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
@@ -150,9 +196,11 @@ const ProductDetails = () => {
                       <span>{category}</span>
                     </li>
                     <li>
-                      <span className="font-medium mr-2">Quantity :</span>
-                      <span className="text-gray-500 dark:text-gray-400 ">
-                        {mainQuantity}
+                      <span className="font-medium mr-2">
+                        Available Quantity:
+                      </span>
+                      <span className="text-gray-500 dark:text-gray-400">
+                        {quantity}
                       </span>
                     </li>
                     <li className="flex">
@@ -166,71 +214,11 @@ const ProductDetails = () => {
               <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
                 <div className="flex flex-col sm:flex-row gap-4">
                   <button
-                    onClick={handleOrder}
+                    onClick={handleModalOpen}
                     className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200"
                   >
-                    Buy Now
+                    Order Now
                   </button>
-                  <div className="">
-                    <dialog id="my_modal_4" className="modal">
-                      <div className="modal-box w-11/12 max-w-5xl bg-[#eef4ff] dark:bg-gray-800 rounded-xl shadow-xl">
-                        <div className="flex flex-col space-y-6">
-                          <div className="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-4">
-                            <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
-                              Confirm Your Order
-                            </h3>
-                            <form method="dialog">
-                              <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg ">
-                                close
-                              </button>
-                            </form>
-                          </div>
-
-                          <div className="space-y-4">
-                            <div>
-                              <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">
-                                Email
-                              </label>
-                              <input
-                                className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700 dark:text-gray-200 cursor-not-allowed"
-                                type="email"
-                                value={user.email}
-                                name="email"
-                                readOnly
-                              />
-                            </div>
-
-                            <div>
-                              <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">
-                                Full Name
-                              </label>
-                              <input
-                                className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700 dark:text-gray-200 cursor-not-allowed"
-                                type="text"
-                                value={user.displayName}
-                                name="displayName"
-                                readOnly
-                              />
-                            </div>
-                          </div>
-
-                          <div className="modal-action pt-4 border-t border-gray-200 dark:border-gray-700">
-                            <button
-                              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-[1.01] shadow-md hover:shadow-lg"
-                              onClick={() => {
-                                /* Add purchase logic here */
-                              }}
-                            >
-                              Complete Purchase
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <form method="dialog" className="modal-backdrop">
-                        <button>close</button>
-                      </form>
-                    </dialog>
-                  </div>
                   <button
                     onClick={() => navigate(-1)}
                     className="flex-1 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white font-medium py-3 px-6 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
@@ -256,6 +244,89 @@ const ProductDetails = () => {
           )}
         </div>
       </div>
+
+      {/* Order Modal */}
+      <dialog id="order_modal" className="modal">
+        <div className="modal-box w-11/12 max-w-5xl bg-[#eef4ff] dark:bg-gray-800 rounded-xl shadow-xl">
+          <div className="flex flex-col space-y-6">
+            <div className="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-4">
+              <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+                Confirm Your Order
+              </h3>
+              <form method="dialog">
+                <button className="px-4 py-2 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-white font-semibold rounded-lg transition-colors duration-200">
+                  Close
+                </button>
+              </form>
+            </div>
+
+            <form onSubmit={handleOrderSubmit}>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">
+                    Email
+                  </label>
+                  <input
+                    className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700 dark:text-gray-200 cursor-not-allowed"
+                    type="email"
+                    name="email"
+                    value={user?.email || ''}
+                    readOnly
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">
+                    Full Name
+                  </label>
+                  <input
+                    className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700 dark:text-gray-200"
+                    type="text"
+                    name="name"
+                    value={user?.displayName || ''}
+                    required
+                  />
+                </div>
+              </div>
+              <div class="flex flex-col items-center">
+                <label class="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
+                  Order Quantity
+                </label>
+                <div class="flex items-center gap-4">
+                  <button
+                    onClick={handelSubQuantity}
+                    type="button"
+                    class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white"
+                  >
+                    -
+                  </button>
+                  <span class="text-xl font-medium w-12 text-center">
+                    {sellQuantity}
+                  </span>
+                  <button
+                    onClick={handelSumQuantity}
+                    type="button"
+                    class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="modal-action pt-4 border-t border-gray-200 dark:border-gray-700">
+                <button
+                  type="submit"
+                  class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200"
+                >
+                  Done
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <form method="dialog" className="modal-backdrop">
+          <button>close</button>
+        </form>
+      </dialog>
     </div>
   );
 };
