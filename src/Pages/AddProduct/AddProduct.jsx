@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import { TabTitle } from '../../Layouts/Utils/DynamicTitle/DynamicTitle';
 
 const AddProduct = () => {
+  TabTitle('GlobalBazaar - Add Product');
   const [formData, setFormData] = useState({
     imageUrl: '', // Changed from 'image' to 'imageUrl'
     name: '',
-    mainQuantity: '',
+    quantity: '',
     minSellingQuantity: '',
     brand: '',
     category: '',

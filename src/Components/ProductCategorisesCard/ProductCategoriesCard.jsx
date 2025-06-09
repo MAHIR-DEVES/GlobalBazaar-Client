@@ -1,9 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { TabTitle } from '../../Layouts/Utils/DynamicTitle/DynamicTitle';
 
-const Cards = ({ product }) => {
-  const { _id, imageUrl, name, brand, category, rating, quantity, price } =
-    product;
+const ProductCategoriesCard = ({ dat, category }) => {
+  TabTitle(`GlobalBazaar - ${category} `);
+  const {
+    _id,
+    imageUrl,
+    name,
+    brand,
+    category: productCategory,
+    rating,
+    price,
+    quantity,
+  } = dat;
 
   return (
     <div className="w-full rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 hover:-translate-y-1 group/card">
@@ -102,7 +112,7 @@ const Cards = ({ product }) => {
                 d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
               />
             </svg>
-            {category}
+            {productCategory}
           </p>
           {quantity ? (
             <span className="text-green-600 dark:text-green-400 flex items-center">
@@ -185,4 +195,4 @@ const Cards = ({ product }) => {
   );
 };
 
-export default Cards;
+export default ProductCategoriesCard;

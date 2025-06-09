@@ -2,8 +2,10 @@ import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
 import axios from 'axios';
 import OrderCard from '../../Components/OrderCard/OrderCard';
+import { TabTitle } from '../../Layouts/Utils/DynamicTitle/DynamicTitle';
 
 const Cart = () => {
+  TabTitle('GlobalBazaar - Cart');
   const { user } = use(AuthContext);
   const [orders, setOrders] = useState([]);
 

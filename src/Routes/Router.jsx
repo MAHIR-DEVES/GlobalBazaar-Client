@@ -15,6 +15,7 @@ import MyProduct from '../Pages/MyProduct/MyProduct';
 import Cart from '../Pages/Cart/Cart';
 import ProductCategories from '../Components/ProductCategories/ProductCategories';
 import ProductDetails from '../Components/ProductDetails/ProductDetails';
+import PrivateRoute from '../Provider/AuthProvider/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -34,26 +35,46 @@ const router = createBrowserRouter([
       },
       {
         path: '/category/:id',
-        Component: ProductCategories,
+        element: (
+          <PrivateRoute>
+            <ProductCategories></ProductCategories>
+          </PrivateRoute>
+        ),
       },
       {
         path: '/allProduct',
-        Component: AllProduct,
+        element: (
+          <PrivateRoute>
+            <AllProduct></AllProduct>
+          </PrivateRoute>
+        ),
         loader: () => fetch('http://localhost:3000/get-allProduct'),
       },
       {
         path: '/productDetails/:id',
-        Component: ProductDetails,
+        element: (
+          <PrivateRoute>
+            <ProductDetails></ProductDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:3000/singleProduct/${params.id}`),
       },
       {
         path: '/addProduct',
-        Component: AddProduct,
+        element: (
+          <PrivateRoute>
+            <AddProduct></AddProduct>
+          </PrivateRoute>
+        ),
       },
       {
         path: '/myProduct',
-        Component: MyProduct,
+        element: (
+          <PrivateRoute>
+            <MyProduct></MyProduct>
+          </PrivateRoute>
+        ),
       },
       {
         path: '/cart',

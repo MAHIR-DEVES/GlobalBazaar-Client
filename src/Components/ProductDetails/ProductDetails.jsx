@@ -3,8 +3,10 @@ import { useLoaderData, useNavigate } from 'react-router';
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { TabTitle } from '../../Layouts/Utils/DynamicTitle/DynamicTitle';
 
 const ProductDetails = () => {
+  TabTitle('GlobalBazaar - Product Details');
   const { user } = use(AuthContext);
   const singleData = useLoaderData();
   const navigate = useNavigate();
@@ -297,7 +299,7 @@ const ProductDetails = () => {
                   >
                     -
                   </button>
-                  <span class="text-xl font-medium w-12 text-center">
+                  <span class="text-xl font-medium w-12 text-center text-white">
                     {sellQuantity}
                   </span>
                   <button

@@ -22,7 +22,7 @@ const Home = () => {
             Posts Events
           </span>
           <h2 className="text-4xl md:text-5xl font-bold dark:text-white text-black mb-4">
-            Available Post Section
+            Available Category Section
           </h2>
           <p className="text-lg dark:text-white text-blackmax-w-2xl mx-auto">
             Explore the most popular restaurant posts in your area

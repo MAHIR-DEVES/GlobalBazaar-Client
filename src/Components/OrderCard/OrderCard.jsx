@@ -68,7 +68,7 @@ const OrderCard = ({ order, setOrders, orders }) => {
           </span>
           <span
             onClick={() => handelDeleteOrder(_id)}
-            className="text-sm font-medium text-blue-600 dark:text-blue-400"
+            className="text-sm font-medium text-blue-600 dark:text-blue-400 cursor-pointer"
           >
             Remove
           </span>

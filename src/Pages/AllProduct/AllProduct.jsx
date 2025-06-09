@@ -3,12 +3,12 @@ import { useState } from 'react';
 import { useLoaderData } from 'react-router';
 import Cards from '../../Components/Cards/Cards';
 import ProductTable from '../../Components/ProductTable/ProductTable';
+import { TabTitle } from '../../Layouts/Utils/DynamicTitle/DynamicTitle';
 
 const AllProduct = () => {
+  TabTitle('GlobalBazaar - All Product');
   const products = useLoaderData();
-  const [toggle, setToggle] = useState(true);
-  // console.log(products);
-  console.log(toggle);
+  const [toggle, setToggle] = useState(false);
 
   return (
     <div className="">
@@ -26,30 +26,45 @@ const AllProduct = () => {
             {/* Table Header */}
             <thead className="bg-gray-50 dark:bg-gray-600">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                {/* Image - always visible */}
+                <th className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                   Image
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+
+                {/* Name - hidden on mobile (since it appears next to image on mobile) */}
+                <th className="hidden sm:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                   Name
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+
+                {/* Brand - hidden on mobile */}
+                <th className="hidden md:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                   Brand
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+
+                {/* Category - hidden on mobile */}
+                <th className="hidden sm:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                   Category
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+
+                {/* Quantity - hidden on mobile */}
+                <th className="hidden md:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                   Qty
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+
+                {/* Price - hidden on mobile */}
+                <th className="hidden sm:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                   Price
                 </th>
 
+                {/* Description - hidden on tablet and below */}
                 <th className="hidden lg:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                   Description
                 </th>
-                <th className="hidden lg:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                  Details
+
+                {/* Details - always visible (but text hidden on mobile) */}
+                <th className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                  <span className="hidden sm:inline">Details</span>
+                  <span className="sm:hidden">Action</span>
                 </th>
               </tr>
             </thead>
