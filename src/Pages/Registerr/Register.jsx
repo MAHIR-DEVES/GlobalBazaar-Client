@@ -8,7 +8,7 @@ import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 
 const Register = () => {
-  TabTitle('Hood Happenings | Register');
+  TabTitle('GlobalBazaar - Register');
   const [passwordError, setPasswordError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const { userRegister, setUser, updateUser, googleLogin } =

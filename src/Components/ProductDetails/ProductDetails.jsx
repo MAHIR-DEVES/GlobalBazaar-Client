@@ -125,6 +125,19 @@ const ProductDetails = () => {
       .catch(error => {
         console.log(error);
       });
+
+    // update quantity
+
+    axios
+      .patch(`http://localhost:3000/updateQuantity/${_id}`, {
+        updateQuantity: { sellQuantity },
+      })
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   return (

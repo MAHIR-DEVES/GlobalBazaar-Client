@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import { TabTitle } from '../../Layouts/Utils/DynamicTitle/DynamicTitle';
+import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
 
 const AddProduct = () => {
   TabTitle('GlobalBazaar - Add Product');
+
+  const { user } = use(AuthContext);
   const [formData, setFormData] = useState({
-    imageUrl: '', // Changed from 'image' to 'imageUrl'
+    imageUrl: '',
     name: '',
     quantity: '',
     minSellingQuantity: '',
@@ -16,6 +19,7 @@ const AddProduct = () => {
     productContent: '',
     price: '',
     rating: '',
+    email: user?.email,
   });
 
   const [errors, setErrors] = useState({});

@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 import Swal from 'sweetalert2';
 
 const Login = () => {
-  TabTitle('Hood Happenings | Login');
+  TabTitle('GlobalBazaar - Login');
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const { userLogin, googleLogin, setUser } = React.useContext(AuthContext);
