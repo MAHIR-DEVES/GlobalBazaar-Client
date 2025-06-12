@@ -61,6 +61,8 @@ const MyProduct = () => {
             <MyProductTable
               key={product._id}
               product={product}
+              myProducts={myProducts}
+              setMyProducts={setMyProducts}
             ></MyProductTable>
           ))}
         </tbody>

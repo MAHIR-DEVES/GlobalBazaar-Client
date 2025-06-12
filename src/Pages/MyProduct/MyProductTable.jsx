@@ -1,9 +1,40 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { motion } from 'framer-motion';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
-const MyProductTable = ({ product }) => {
+const MyProductTable = ({ product, myProducts, setMyProducts }) => {
   const { _id, imageUrl, name, brand, category, quantity, price } = product;
+
+  const handelDelete = id => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then(result => {
+      if (result.isConfirmed) {
+        axios.delete(`http://localhost:3000/myProduct/${_id}`).then(res => {
+          if (res.data.deletedCount) {
+            Swal.fire({
+              title: 'Deleted!',
+              text: 'Your file has been deleted.',
+              icon: 'success',
+            });
+
+            const remainingProducts = myProducts.filter(
+              product => product._id !== id
+            );
+            setMyProducts(remainingProducts);
+          }
+        });
+      }
+    });
+  };
   return (
     <motion.tr
       key={_id}
@@ -49,25 +80,17 @@ const MyProductTable = ({ product }) => {
           {quantity || 'unknown'}
         </span>
       </td>
-      {/* <td className="px-6 py-4 whitespace-nowrap">
-        <span
-          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-          ${
-            post.availability === 'available'
-              ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-              : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
-          }`}
-        >
-          {post.availability || 'unknown'}
-        </span>
-      </td> */}
+
       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
         <Link>
           <button className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300 mr-4 cursor-pointer transition-colors">
             Update
           </button>
         </Link>
-        <button className="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 cursor-pointer transition-colors">
+        <button
+          onClick={() => handelDelete(_id)}
+          className="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 cursor-pointer transition-colors"
+        >
           Delete
         </button>
       </td>
