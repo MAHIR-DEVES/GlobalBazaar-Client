@@ -82,7 +82,7 @@ const MyProductTable = ({ product, myProducts, setMyProducts }) => {
       </td>
 
       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-        <Link>
+        <Link to={`/updatedProduct/${_id}`}>
           <button className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300 mr-4 cursor-pointer transition-colors">
             Update
           </button>
