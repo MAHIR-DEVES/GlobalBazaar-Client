@@ -19,7 +19,7 @@ const Home = () => {
       <section className="py-12 lg:px-4 sm:px-6  lg:w-10/12 mx-auto ">
         <div className="text-center mb-12  bg-white dark:bg-gray-800">
           <span className="inline-block px-3 py-1 text-sm font-semibold text-red-600 bg-red-100 rounded-full mb-4">
-            Posts Events
+            Category
           </span>
           <h2 className="text-4xl md:text-5xl font-bold dark:text-white text-black mb-4">
             Available Category Section
@@ -28,9 +28,10 @@ const Home = () => {
             Explore the most popular restaurant posts in your area
           </p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {categories.map(category => (
             <CategoriesCard
+              categories={categories}
               category={category}
               key={category._id}
             ></CategoriesCard>
