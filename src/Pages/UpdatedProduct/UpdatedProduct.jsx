@@ -3,6 +3,7 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 import { TabTitle } from '../../Layouts/Utils/DynamicTitle/DynamicTitle';
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const UpdatedProduct = () => {
   const loadedData = useLoaderData();
@@ -107,7 +108,13 @@ const UpdatedProduct = () => {
       );
 
       if (response.data.modifiedCount > 0) {
-        alert('Product updated successfully!');
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Product Update Successful ',
+          showConfirmButton: false,
+          timer: 1500,
+        });
         navigate('/myProduct');
       } else {
         alert('No changes were made to the product.');

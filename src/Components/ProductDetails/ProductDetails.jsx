@@ -4,6 +4,7 @@ import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { TabTitle } from '../../Layouts/Utils/DynamicTitle/DynamicTitle';
+import { toast } from 'react-toastify';
 
 const ProductDetails = () => {
   TabTitle('GlobalBazaar - Product Details');
@@ -102,6 +103,10 @@ const ProductDetails = () => {
     const formData = new FormData(e.target);
     const name = formData.get('name');
     const email = formData.get('email');
+
+    if (sellQuantity < 50) {
+      return toast.error('Minimum Quantity 50');
+    }
 
     const orderData = {
       orderId: _id,

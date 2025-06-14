@@ -162,6 +162,7 @@ const Cards = ({ product }) => {
               View Details
             </button>
           </Link>
+          <button className="btn">update</button>
 
           {/* Wishlist Button */}
           <button className="p-2 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">

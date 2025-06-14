@@ -33,6 +33,7 @@ const router = createBrowserRouter([
       {
         path: '/categories',
         Component: Categories,
+        loader: () => fetch('http://localhost:3000/all-categories'),
       },
       {
         path: '/category/:id',

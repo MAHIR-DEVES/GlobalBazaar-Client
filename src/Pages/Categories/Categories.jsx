@@ -1,20 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { TabTitle } from '../../Layouts/Utils/DynamicTitle/DynamicTitle';
+import { useLoaderData } from 'react-router';
+import CategoriesCard from '../../Components/categoriesCard/CategoriesCard';
 
 const Categories = () => {
   TabTitle('GlobalBazaar - Categories');
+  const data = useLoaderData();
+  const [categories, setCategories] = useState([]);
 
-  // Sample categories data - replace with your actual data
-  const categories = [
-    { id: 1, name: 'Electronics', products: 1250, icon: '💻' },
-    { id: 2, name: 'Apparel', products: 3420, icon: '👕' },
-    { id: 3, name: 'Home & Garden', products: 890, icon: '🏠' },
-    { id: 4, name: 'Beauty & Personal Care', products: 1560, icon: '💄' },
-    { id: 5, name: 'Industrial Equipment', products: 670, icon: '⚙️' },
-    { id: 6, name: 'Food & Beverage', products: 2300, icon: '🍎' },
-    { id: 7, name: 'Automotive', products: 980, icon: '🚗' },
-    { id: 8, name: 'Health & Medical', products: 750, icon: '🏥' },
-  ];
+  useEffect(() => {
+    if (data) {
+      setCategories(data);
+    }
+  }, [data]);
+
+  console.log(categories);
+
+  // // Sample categories data - replace with your actual data
+  // const categories = [
+  //   { id: 1, name: 'Electronics', products: 1250, icon: '💻' },
+  //   { id: 2, name: 'Apparel', products: 3420, icon: '👕' },
+  //   { id: 3, name: 'Home & Garden', products: 890, icon: '🏠' },
+  //   { id: 4, name: 'Beauty & Personal Care', products: 1560, icon: '💄' },
+  //   { id: 5, name: 'Industrial Equipment', products: 670, icon: '⚙️' },
+  //   { id: 6, name: 'Food & Beverage', products: 2300, icon: '🍎' },
+  //   { id: 7, name: 'Automotive', products: 980, icon: '🚗' },
+  //   { id: 8, name: 'Health & Medical', products: 750, icon: '🏥' },
+  // ];
 
   return (
     <div className="min-h-screen bg-[#eef4ff] dark:bg-gray-800 transition-colors duration-300">
@@ -47,23 +59,10 @@ const Categories = () => {
         {/* Categories Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {categories.map(category => (
-            <div
-              key={category.id}
-              className="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
-            >
-              <div className="p-6 text-center">
-                <div className="text-4xl mb-4">{category.icon}</div>
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
-                  {category.name}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  {category.products.toLocaleString()} products
-                </p>
-                <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-300">
-                  Explore
-                </button>
-              </div>
-            </div>
+            <CategoriesCard
+              category={category}
+              key={category._id}
+            ></CategoriesCard>
           ))}
         </div>
 
