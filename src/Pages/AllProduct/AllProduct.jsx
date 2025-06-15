@@ -12,7 +12,50 @@ const AllProduct = () => {
 
   return (
     <div className="">
-      <div className="text-right py-5 cursor-pointer">
+      <div className="text-right py-5 cursor-pointer space-x-2">
+        <div className="dropdown z-10">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn m-1 bg-[#eef4ff] dark:bg-gray-800 hover:bg-[#e0eaff] dark:hover:bg-gray-700 border border-[#d0d9f0] dark:border-gray-600 text-gray-800 dark:text-gray-200"
+          >
+            Filter
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4 ml-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </div>
+          <ul
+            tabIndex={0}
+            className="dropdown-content menu bg-[#eef4ff] dark:bg-gray-800 rounded-box z-1 w-52 p-2 shadow-lg border border-[#d0d9f0] dark:border-gray-600"
+          >
+            <li>
+              <a className="hover:bg-[#e0eaff] dark:hover:bg-gray-700 rounded-md text-gray-800 dark:text-gray-200">
+                <span className="font-medium">Minimum order 50</span>
+              </a>
+            </li>
+            <li>
+              <a className="hover:bg-[#e0eaff] dark:hover:bg-gray-700 rounded-md text-gray-800 dark:text-gray-200">
+                <span className="font-medium">Minimum order 100</span>
+              </a>
+            </li>
+            <li>
+              <a className="hover:bg-[#e0eaff] dark:hover:bg-gray-700 rounded-md text-gray-800 dark:text-gray-200">
+                <span className="font-medium">Minimum order 150</span>
+              </a>
+            </li>
+          </ul>
+        </div>
         <span
           onClick={() => setToggle(!toggle)}
           className=" bg-indigo-600 font-medium py-2 px-4 rounded-lg transition text-white"
@@ -20,6 +63,7 @@ const AllProduct = () => {
           {toggle ? 'Card View' : 'Table View'}
         </span>
       </div>
+      <h2>all products</h2>
       {toggle ? (
         <div className="">
           <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">

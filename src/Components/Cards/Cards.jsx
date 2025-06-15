@@ -1,10 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { GrUpdate } from 'react-icons/gr';
 
 const Cards = ({ product }) => {
   const { _id, imageUrl, name, brand, category, rating, quantity, price } =
     product;
 
+  const navigate = useNavigate();
+
+  const handelUpdate = () => {
+    navigate(`/updatedProduct/${_id}`);
+  };
   return (
     <div className="w-full rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 hover:-translate-y-1 group/card">
       {/* Product Image with Hover Effects */}
@@ -159,10 +165,17 @@ const Cards = ({ product }) => {
                   d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              View Details
+              <span className=" hidden lg:flex">View</span> Details
             </button>
           </Link>
-          <button className="btn">update</button>
+          {/* <Link to={`/updatedProduct/${_id}`}> */}
+          <button
+            onClick={handelUpdate}
+            className="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-700 dark:hover:bg-indigo-600 text-white font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
+          >
+            <GrUpdate />
+          </button>
+          {/* </Link> */}
 
           {/* Wishlist Button */}
           <button className="p-2 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">

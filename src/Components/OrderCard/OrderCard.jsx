@@ -27,6 +27,9 @@ const OrderCard = ({ order, setOrders, orders }) => {
               icon: 'success',
             });
           }
+          axios.patch(`http://localhost:3000/addUpdateQuantity/${orderId}`, {
+            updateQuantity: { quantity },
+          });
         });
       }
     });

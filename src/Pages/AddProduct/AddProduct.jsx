@@ -34,6 +34,7 @@ const AddProduct = () => {
     'Automotive',
     'Office',
     'Medicine',
+    'Food',
   ];
 
   const handleChange = e => {
