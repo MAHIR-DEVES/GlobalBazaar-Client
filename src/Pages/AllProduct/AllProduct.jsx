@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useLoaderData } from 'react-router';
 import Cards from '../../Components/Cards/Cards';
 import ProductTable from '../../Components/ProductTable/ProductTable';
 import { TabTitle } from '../../Layouts/Utils/DynamicTitle/DynamicTitle';
+import axios from 'axios';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const AllProduct = () => {
   TabTitle('GlobalBazaar - All Product');
-  const products = useLoaderData();
+  const [products, setProducts] = useState([]);
+
+  const axiosSecure = useAxiosSecure();
+
+  useEffect(() => {
+    axiosSecure('http://localhost:3000/get-allProduct')
+      .then(res => setProducts(res.data))
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
   const [toggle, setToggle] = useState(false);
 
   return (

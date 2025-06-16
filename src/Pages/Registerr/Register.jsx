@@ -89,7 +89,7 @@ const Register = () => {
               Create Account
             </h1>
             <p className="text-gray-600 dark:text-gray-300">
-              Join RoomMatch today
+              Join GlobalBazaar today
             </p>
           </div>
 

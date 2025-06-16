@@ -4,6 +4,7 @@ import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
 import axios from 'axios';
 import MyProductTable from './MyProductTable';
 import { Link } from 'react-router';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const MyProduct = () => {
   TabTitle('GlobalBazaar - MyProduct');
@@ -11,8 +12,10 @@ const MyProduct = () => {
   const { user } = use(AuthContext);
   const [myProducts, setMyProducts] = useState([]);
 
+  const axiosSecure = useAxiosSecure();
+
   useEffect(() => {
-    axios(`http://localhost:3000/my-products/`, {
+    axiosSecure(`http://localhost:3000/my-products/`, {
       params: { email: user?.email },
     })
       .then(res => {

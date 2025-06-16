@@ -1,8 +1,8 @@
 import React, { use, useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router';
 import { TabTitle } from '../../Layouts/Utils/DynamicTitle/DynamicTitle';
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const AddProduct = () => {
   TabTitle('GlobalBazaar - Add Product');
@@ -78,7 +78,7 @@ const AddProduct = () => {
       try {
         console.log('Form data:', formData);
         // Simulate API call
-        axios
+        useAxiosSecure
           .post('http://localhost:3000/products', formData)
           .then(res => {
             navigate('/allProduct');

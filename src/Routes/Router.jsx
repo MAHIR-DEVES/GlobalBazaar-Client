@@ -50,7 +50,7 @@ const router = createBrowserRouter([
             <AllProduct></AllProduct>
           </PrivateRoute>
         ),
-        loader: () => fetch('http://localhost:3000/get-allProduct'),
+        // loader: () => fetch(''),
       },
       {
         path: '/productDetails/:id',
@@ -91,7 +91,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/cart',
-        Component: Cart,
+        element: (
+          <PrivateRoute>
+            <Cart></Cart>
+          </PrivateRoute>
+        ),
       },
       {
         path: '/login',

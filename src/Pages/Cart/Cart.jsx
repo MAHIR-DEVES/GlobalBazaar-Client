@@ -1,23 +1,25 @@
 import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
-import axios from 'axios';
 import OrderCard from '../../Components/OrderCard/OrderCard';
 import { TabTitle } from '../../Layouts/Utils/DynamicTitle/DynamicTitle';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const Cart = () => {
   TabTitle('GlobalBazaar - Cart');
   const { user } = use(AuthContext);
   const [orders, setOrders] = useState([]);
 
+  const axiosSecure = useAxiosSecure();
+
   useEffect(() => {
-    axios(`http://localhost:3000/getAllOrder/${user?.email}`)
+    axiosSecure(`/getAllOrder/${user?.email}`)
       .then(res => {
         setOrders(res.data);
       })
       .catch(error => {
         console.log(error);
       });
-  }, [user]);
+  }, [user, axiosSecure]);
 
   return (
     <div>
