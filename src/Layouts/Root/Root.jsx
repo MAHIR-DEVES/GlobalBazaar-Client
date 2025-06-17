@@ -13,6 +13,7 @@ const Root = () => {
       <div className="md:w-11/12 mx-auto min-h-screen   text-black  transition-colors duration-300">
         {state == 'loading' ? <Loading /> : <Outlet></Outlet>}
       </div>
+
       <Footer></Footer>
     </div>
   );

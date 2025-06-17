@@ -27,13 +27,14 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-        loader: () => fetch('http://localhost:3000/categories'),
+        loader: () => fetch('https://b11-assignment-11.vercel.app/categories'),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: '/categories',
         Component: Categories,
-        loader: () => fetch('http://localhost:3000/all-categories'),
+        loader: () =>
+          fetch('https://b11-assignment-11.vercel.app/all-categories'),
       },
       {
         path: '/category/:id',
@@ -59,8 +60,6 @@ const router = createBrowserRouter([
             <ProductDetails></ProductDetails>
           </PrivateRoute>
         ),
-        loader: ({ params }) =>
-          fetch(`http://localhost:3000/singleProduct/${params.id}`),
       },
       {
         path: '/addProduct',
@@ -87,7 +86,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/singleProduct/${params.id}`),
+          fetch(
+            `https://b11-assignment-11.vercel.app/singleProduct/${params.id}`
+          ),
       },
       {
         path: '/cart',

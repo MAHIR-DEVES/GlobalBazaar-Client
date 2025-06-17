@@ -12,6 +12,7 @@ const Navbar = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { user, userLogout } = use(AuthContext);
+
   const links = (
     <>
       <li className="dark:text-white text-black">
@@ -76,8 +77,8 @@ const Navbar = () => {
             className="cursor-pointer text-xl dark:text-white text-black  font-semibold"
             onClick={() => navigate('/')}
           >
-            Global
-            <span className="font-serif font-bold text-blue-600">Bazaar</span>
+            <span className="font-serif font-bold text-blue-600">Global</span>
+            Bazaar
           </button>
         </div>
 
@@ -85,8 +86,78 @@ const Navbar = () => {
         <div className=" hidden lg:flex ">
           <ul className="menu-horizontal px-1 navLink ">{links}</ul>
         </div>
+        <div className="flex  justify-between lg:hidden ">
+          <div className="flex justify-center items-center ">
+            {user && (
+              <>
+                <img
+                  className=" w-10 rounded-full mr-4"
+                  src={user.photoURL || ''}
+                  alt="Profile"
+                  data-tooltip-id="mobile-profile-tooltip"
+                  data-tooltip-content={user.displayName}
+                />
+                <Tooltip
+                  id="mobile-profile-tooltip"
+                  className="z-50 !bg-black !text-white !text-sm !px-3 !py-1 !rounded"
+                />
+              </>
+            )}
+          </div>
+          <div className="flex justify-center items-center">
+            {user ? (
+              <>
+                <button
+                  onClick={handelLogout}
+                  className="bg-indigo-600 font-medium py-1 px-3 rounded-lg transition duration-200 btn-sm text-white"
+                >
+                  Logout
+                </button>
+                <ThemeToggle></ThemeToggle>
+              </>
+            ) : (
+              <>
+                <button
+                  onClick={() => navigate('/login')}
+                  className={`btn btn-sm bg-indigo-600 text-white transition duration-200 ${
+                    pathname === '/login'
+                      ? 'hover:bg-indigo-700 text-white'
+                      : ''
+                  }`}
+                >
+                  Login
+                </button>
+                <button
+                  onClick={() => navigate('/register')}
+                  className="forTab hidden btn btn-sm bg-indigo-600 text-white transition duration-200 ml-2"
+                >
+                  {' '}
+                  Sign Up
+                </button>
 
+                <ThemeToggle></ThemeToggle>
+              </>
+            )}
+          </div>
+        </div>
         <div className="flex hidden lg:flex gap-2">
+          <div className="navProfile flex justify-center items-center gap-4 mr-5">
+            {user && (
+              <>
+                <img
+                  className="w-12 rounded-full"
+                  src={user.photoURL || ''}
+                  alt="Profile"
+                  data-tooltip-id="desktop-profile-tooltip"
+                  data-tooltip-content={user.displayName}
+                />
+                <Tooltip
+                  id="desktop-profile-tooltip"
+                  className="z-50 !bg-black !text-white !text-sm !px-3 !py-1 !rounded"
+                />
+              </>
+            )}
+          </div>
           <div>
             {user ? (
               <>

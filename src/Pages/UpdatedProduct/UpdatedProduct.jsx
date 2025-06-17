@@ -103,7 +103,7 @@ const UpdatedProduct = () => {
     setIsSubmitting(true);
     try {
       const response = await axios.put(
-        `http://localhost:3000/updatedProduct/${_id}`,
+        `https://b11-assignment-11.vercel.app/updatedProduct/${_id}`,
         formData
       );
 

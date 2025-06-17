@@ -3,24 +3,33 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import ProductCategoriesCard from '../ProductCategorisesCard/ProductCategoriesCard';
 import { IoChevronBack } from 'react-icons/io5';
+import ProductSlide from './ProductSlide';
+import Loading from '../Loading/Loading';
 
 const ProductCategories = () => {
   const location = useLocation();
   const { category } = location.state;
   const [data, setData] = useState(null);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
-      .get('http://localhost:3000/filterCategory', { params: { category } })
+      .get('https://b11-assignment-11.vercel.app/filterCategory', {
+        params: { category },
+      })
       .then(res => {
         setData(res.data);
+        setLoading(false);
       })
       .catch(error => {
         console.log(error);
       });
   }, [category]);
 
+  if (loading) {
+    return <Loading></Loading>;
+  }
   return (
     <div>
       <div className="hero bg-[#f8fafc] dark:bg-gray-900 py-12 lg:py-24 px-4 sm:px-6 lg:px-8">
@@ -33,6 +42,7 @@ const ProductCategories = () => {
                 alt="Global business partners meeting"
                 className="rounded-xl shadow-2xl w-full max-w-md lg:max-w-none object-cover h-auto"
               />
+              {/* <ProductSlide data={data}></ProductSlide> */}
             </div>
 
             {/* Content Section - Responsive text sizing */}

@@ -1,17 +1,34 @@
-import React, { useState, use } from 'react';
-import { useLoaderData, useNavigate } from 'react-router';
+import React, { useState, use, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router';
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { TabTitle } from '../../Layouts/Utils/DynamicTitle/DynamicTitle';
 import { toast } from 'react-toastify';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const ProductDetails = () => {
   TabTitle('GlobalBazaar - Product Details');
   const { user } = use(AuthContext);
-  const singleData = useLoaderData();
+  const params = useParams();
   const navigate = useNavigate();
-  const [sellQuantity, setSellQuantity] = useState(50);
+  const [data, setData] = useState({});
+  // const token = user.accessToken;
+
+  const axiosSecure = useAxiosSecure();
+  useEffect(() => {
+    axiosSecure(
+      `https://b11-assignment-11.vercel.app/singleProduct/${params.id}`
+    )
+      .then(res => {
+        setData(res?.data);
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [axiosSecure, params]);
+
   const {
     _id,
     imageUrl,
@@ -24,7 +41,10 @@ const ProductDetails = () => {
     productContent,
     price,
     rating,
-  } = singleData;
+  } = data;
+
+  const convertQn = parseInt(minSellingQuantity);
+  const [sellQuantity, setSellQuantity] = useState(convertQn);
 
   // Generate star rating display
   const renderStars = () => {
@@ -107,6 +127,9 @@ const ProductDetails = () => {
     if (sellQuantity < 50) {
       return toast.error('Minimum Quantity 50');
     }
+    if (minSellingQuantity > quantity) {
+      return alert('cannot oder');
+    }
 
     const orderData = {
       orderId: _id,
@@ -116,7 +139,7 @@ const ProductDetails = () => {
     };
 
     axios
-      .post('http://localhost:3000/orders', orderData)
+      .post('https://b11-assignment-11.vercel.app/orders', orderData)
       .then(res => {
         Swal.fire({
           position: 'center',
@@ -134,7 +157,7 @@ const ProductDetails = () => {
     // update quantity
 
     axios
-      .patch(`http://localhost:3000/updateQuantity/${_id}`, {
+      .patch(`https://b11-assignment-11.vercel.app/updateQuantity/${_id}`, {
         updateQuantity: { sellQuantity },
       })
       .then(res => {
@@ -169,7 +192,7 @@ const ProductDetails = () => {
                     {category}
                   </span>
                   <span className="text-sm text-gray-500 dark:text-gray-400">
-                    SKU: {_id.slice(-6).toUpperCase()}
+                    SKU: {_id?.slice(-6).toUpperCase()}
                   </span>
                 </div>
 
@@ -234,7 +257,7 @@ const ProductDetails = () => {
                     onClick={handleModalOpen}
                     className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200"
                   >
-                    Order Now
+                    Buy Now
                   </button>
                   <button
                     onClick={() => navigate(-1)}
@@ -317,7 +340,7 @@ const ProductDetails = () => {
                   >
                     -
                   </button>
-                  <span class="text-xl font-medium w-12 text-center text-white">
+                  <span class="text-xl font-medium w-12 text-center text-gray-600 dark:text-gray-300">
                     {sellQuantity}
                   </span>
                   <button
@@ -334,7 +357,7 @@ const ProductDetails = () => {
                   type="submit"
                   class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200"
                 >
-                  Done
+                  Order
                 </button>
               </div>
             </form>

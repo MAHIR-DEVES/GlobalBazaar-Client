@@ -5,26 +5,33 @@ import axios from 'axios';
 import MyProductTable from './MyProductTable';
 import { Link } from 'react-router';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import Loading from '../../Components/Loading/Loading';
 
 const MyProduct = () => {
   TabTitle('GlobalBazaar - MyProduct');
 
   const { user } = use(AuthContext);
   const [myProducts, setMyProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    axiosSecure(`http://localhost:3000/my-products/`, {
+    axiosSecure(`https://b11-assignment-11.vercel.app/my-products/`, {
       params: { email: user?.email },
     })
       .then(res => {
         setMyProducts(res.data);
+        setLoading(false);
       })
       .catch(error => {
         console.log(error);
       });
-  }, [user]);
+  }, [user, setMyProducts, axiosSecure]);
+
+  if (loading) {
+    return <Loading></Loading>;
+  }
 
   return (
     <div>
@@ -65,30 +72,45 @@ const MyProduct = () => {
       ) : (
         <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600 my-5">
           {/* Table Header */}
-          <thead className="bg-gray-50 dark:bg-gray-600">
+          <thead className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
             <tr>
-              {/* Image - always visible */}
-              <th className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                Image
+              {/* Product - always visible (combines image and name on mobile) */}
+              <th
+                scope="col"
+                className="px-4 py-3 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+              >
+                Product
               </th>
 
-              {/* Name - hidden on mobile (since it appears next to image on mobile) */}
-              <th className="hidden sm:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                price
+              {/* Price - hidden on extra small screens */}
+              <th
+                scope="col"
+                className="hidden xs:table-cell px-2 py-3 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+              >
+                Price
               </th>
 
-              {/* Brand - hidden on mobile */}
-              <th className="hidden md:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+              {/* Category - hidden on small screens */}
+              <th
+                scope="col"
+                className="hidden sm:table-cell px-2 py-3 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+              >
                 Category
               </th>
 
-              {/* Category - hidden on mobile */}
-              <th className="hidden sm:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+              {/* Quantity - hidden on medium screens */}
+              <th
+                scope="col"
+                className="hidden md:table-cell px-2 py-3 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+              >
                 Quantity
               </th>
 
-              {/* Quantity - hidden on mobile */}
-              <th className="hidden md:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+              {/* Actions - always visible but with adjusted padding */}
+              <th
+                scope="col"
+                className="px-2 py-3 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+              >
                 Actions
               </th>
             </tr>

@@ -18,20 +18,22 @@ const MyProductTable = ({ product, myProducts, setMyProducts }) => {
       confirmButtonText: 'Yes, delete it!',
     }).then(result => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:3000/myProduct/${_id}`).then(res => {
-          if (res.data.deletedCount) {
-            Swal.fire({
-              title: 'Deleted!',
-              text: 'Your file has been deleted.',
-              icon: 'success',
-            });
+        axios
+          .delete(`https://b11-assignment-11.vercel.app/myProduct/${_id}`)
+          .then(res => {
+            if (res.data.deletedCount) {
+              Swal.fire({
+                title: 'Deleted!',
+                text: 'Your file has been deleted.',
+                icon: 'success',
+              });
 
-            const remainingProducts = myProducts.filter(
-              product => product._id !== id
-            );
-            setMyProducts(remainingProducts);
-          }
-        });
+              const remainingProducts = myProducts.filter(
+                product => product._id !== id
+              );
+              setMyProducts(remainingProducts);
+            }
+          });
       }
     });
   };
@@ -46,53 +48,66 @@ const MyProductTable = ({ product, myProducts, setMyProducts }) => {
       }}
       className="dark:hover:bg-gray-600/50"
     >
-      <td className="px-6 py-4 whitespace-nowrap">
+      {/* Product Info - Responsive Stack on Mobile */}
+      <td className="px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap">
         <div className="flex items-center">
-          <div className="flex-shrink-0 h-10 w-10">
+          <div className="flex-shrink-0 h-8 w-8 sm:h-10 sm:w-10">
             <img
-              className="h-10 w-10 rounded-full object-cover"
+              className="h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover"
               src={imageUrl || 'https://via.placeholder.com/150'}
-              alt={imageUrl.title}
+              alt={name?.title || 'Product image'}
             />
           </div>
-          <div className="ml-4">
-            <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
-              {name.title}
+          <div className="ml-3 sm:ml-4">
+            <div className="text-sm font-medium text-gray-900 dark:text-gray-100 line-clamp-1">
+              {name?.title || 'No name'}
             </div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">
-              {brand}
+            <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+              {brand || 'No brand'}
             </div>
           </div>
         </div>
       </td>
-      <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm text-gray-900 dark:text-gray-100 font-medium">
-          ${price || 'N/A'}
+
+      {/* Price - Hidden on smallest screens */}
+      <td className="px-2 py-3 sm:px-6 sm:py-4 whitespace-nowrap hidden xs:table-cell">
+        <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
+          {price ? `$${price}` : 'N/A'}
         </div>
       </td>
-      <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm text-gray-900 dark:text-gray-100">
+
+      {/* Category - Hidden on small screens */}
+      <td className="px-2 py-3 sm:px-6 sm:py-4 whitespace-nowrap hidden sm:table-cell">
+        <div className="text-sm text-gray-900 dark:text-gray-100 capitalize">
           {category || 'N/A'}
         </div>
       </td>
-      <td className="px-6 py-4 whitespace-nowrap">
+
+      {/* Quantity - Hidden on medium screens */}
+      <td className="px-2 py-3 sm:px-6 sm:py-4 whitespace-nowrap hidden md:table-cell">
         <span className="text-sm text-gray-900 dark:text-gray-100">
-          {quantity || 'unknown'}
+          {quantity ?? 'Unknown'}
         </span>
       </td>
 
-      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-        <Link to={`/updatedProduct/${_id}`}>
-          <button className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300 mr-4 cursor-pointer transition-colors">
-            Update
+      {/* Actions - Responsive Button Group */}
+      <td className="px-2 py-3 sm:px-6 sm:py-4 whitespace-nowrap">
+        <div className="flex flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-2">
+          <Link
+            to={`/updatedProduct/${_id}`}
+            className="inline-flex items-center justify-center"
+          >
+            <button className="text-xs sm:text-sm px-2 py-1 sm:px-3 sm:py-1.5 rounded-md text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-colors">
+              Update
+            </button>
+          </Link>
+          <button
+            onClick={() => handelDelete(_id)}
+            className="text-xs sm:text-sm px-2 py-1 sm:px-3 sm:py-1.5 rounded-md text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors"
+          >
+            Delete
           </button>
-        </Link>
-        <button
-          onClick={() => handelDelete(_id)}
-          className="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 cursor-pointer transition-colors"
-        >
-          Delete
-        </button>
+        </div>
       </td>
     </motion.tr>
   );

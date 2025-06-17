@@ -1,27 +1,54 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { useLoaderData } from 'react-router';
 import Cards from '../../Components/Cards/Cards';
 import ProductTable from '../../Components/ProductTable/ProductTable';
 import { TabTitle } from '../../Layouts/Utils/DynamicTitle/DynamicTitle';
-import axios from 'axios';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import Loading from '../../Components/Loading/Loading';
 
 const AllProduct = () => {
   TabTitle('GlobalBazaar - All Product');
   const [products, setProducts] = useState([]);
+  const [toggle, setToggle] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    axiosSecure('http://localhost:3000/get-allProduct')
-      .then(res => setProducts(res.data))
+    axiosSecure('https://b11-assignment-11.vercel.app/get-allProduct')
+      .then(res => {
+        setProducts(res.data);
+        setLoading(false);
+      })
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [axiosSecure]);
 
-  const [toggle, setToggle] = useState(false);
+  const handelFilter = () => {
+    console.log('filter');
+    axiosSecure('https://b11-assignment-11.vercel.app/filter-product')
+      .then(res => {
+        setProducts(res.data);
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+  const handelAllProduct = () => {
+    axiosSecure('https://b11-assignment-11.vercel.app/get-allProducts')
+      .then(res => {
+        setProducts(res.data);
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+  if (loading) {
+    return <Loading></Loading>;
+  }
 
   return (
     <div className="">
@@ -54,17 +81,16 @@ const AllProduct = () => {
           >
             <li>
               <a className="hover:bg-[#e0eaff] dark:hover:bg-gray-700 rounded-md text-gray-800 dark:text-gray-200">
-                <span className="font-medium">Minimum order 50</span>
+                <span onClick={handelAllProduct} className="font-medium">
+                  All product
+                </span>
               </a>
             </li>
             <li>
               <a className="hover:bg-[#e0eaff] dark:hover:bg-gray-700 rounded-md text-gray-800 dark:text-gray-200">
-                <span className="font-medium">Minimum order 100</span>
-              </a>
-            </li>
-            <li>
-              <a className="hover:bg-[#e0eaff] dark:hover:bg-gray-700 rounded-md text-gray-800 dark:text-gray-200">
-                <span className="font-medium">Minimum order 150</span>
+                <span onClick={handelFilter} className="font-medium">
+                  Minimum order 100
+                </span>
               </a>
             </li>
           </ul>

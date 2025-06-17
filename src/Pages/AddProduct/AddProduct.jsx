@@ -6,7 +6,7 @@ import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const AddProduct = () => {
   TabTitle('GlobalBazaar - Add Product');
-
+  const axiosSecure = useAxiosSecure();
   const { user } = use(AuthContext);
   const [formData, setFormData] = useState({
     imageUrl: '',
@@ -78,8 +78,8 @@ const AddProduct = () => {
       try {
         console.log('Form data:', formData);
         // Simulate API call
-        useAxiosSecure
-          .post('http://localhost:3000/products', formData)
+        axiosSecure
+          .post('https://b11-assignment-11.vercel.app/products', formData)
           .then(res => {
             navigate('/allProduct');
             console.log(res);
