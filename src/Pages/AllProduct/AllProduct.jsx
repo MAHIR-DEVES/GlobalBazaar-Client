@@ -52,12 +52,12 @@ const AllProduct = () => {
 
   return (
     <div className="">
-      <div className="text-right py-5 cursor-pointer space-x-2">
+      <div className="text-right py-5 cursor-pointer space-x-2 flex items-center">
         <div className="dropdown z-10">
           <div
             tabIndex={0}
             role="button"
-            className="btn m-1 bg-[#eef4ff] dark:bg-gray-800 hover:bg-[#e0eaff] dark:hover:bg-gray-700 border border-[#d0d9f0] dark:border-gray-600 text-gray-800 dark:text-gray-200"
+            className="btn m-1 bg-[#eef4ff] dark:bg-gray-800 hover:bg-[#e0eaff] dark:hover:bg-gray-700 border border-[#d0d9f0] dark:border-gray-600 text-gray-800 dark:text-gray-200 "
           >
             Filter
             <svg
@@ -95,14 +95,16 @@ const AllProduct = () => {
             </li>
           </ul>
         </div>
-        <span
-          onClick={() => setToggle(!toggle)}
-          className=" bg-indigo-600 font-medium py-2 px-4 rounded-lg transition text-white"
-        >
-          {toggle ? 'Card View' : 'Table View'}
-        </span>
+        <div className="">
+          <span
+            onClick={() => setToggle(!toggle)}
+            className=" bg-indigo-600 font-medium py-3 px-4 rounded-lg transition text-white "
+          >
+            {toggle ? 'Card View' : 'Table View'}
+          </span>
+        </div>
       </div>
-      <h2 className="font-semibold bg-[#eef4ff] dark:bg-gray-800 hover:bg-[#e0eaff] dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200">
+      <h2 className="font-semibold bg-[#eef4ff] dark:bg-gray-800 hover:bg-[#e0eaff] dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200  pb-2 ml-2">
         All products
       </h2>
       {toggle ? (

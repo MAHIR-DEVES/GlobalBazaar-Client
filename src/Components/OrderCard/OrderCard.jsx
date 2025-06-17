@@ -99,6 +99,9 @@ const OrderCard = ({ order, setOrders, orders }) => {
       {/* Footer with Functional Buttons */}
       <div className="px-6 py-4 bg-white dark:bg-gray-700 bg-opacity-50 dark:bg-opacity-30 border-t border-gray-100 dark:border-gray-700">
         <div className="flex justify-between items-center">
+          <div className="">
+            <span className="text-gray-800 dark:text-white">Your Order</span>
+          </div>
           <div className="flex space-x-3">
             <button
               onClick={() => handelDeleteOrder(_id)}

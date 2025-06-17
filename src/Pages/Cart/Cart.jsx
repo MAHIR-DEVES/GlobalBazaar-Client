@@ -70,14 +70,15 @@ const Cart = () => {
           </motion.div>
         </motion.div>
       </section>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 p-4 md:p-6">
         {orders?.map(order => (
           <OrderCard
             key={order._id}
             order={order}
             orders={orders}
             setOrders={setOrders}
-          ></OrderCard>
+          />
         ))}
       </div>
     </div>
