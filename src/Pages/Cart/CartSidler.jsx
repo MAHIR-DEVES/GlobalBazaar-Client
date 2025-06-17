@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const CompactCartMarquee = ({ orders = [] }) => {
-  // Duplicate orders for seamless looping
   const marqueeItems = [...orders, ...orders, ...orders];
 
   return (

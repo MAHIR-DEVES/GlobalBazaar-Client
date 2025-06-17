@@ -16,18 +16,6 @@ const Categories = () => {
 
   console.log(categories);
 
-  // // Sample categories data - replace with your actual data
-  // const categories = [
-  //   { id: 1, name: 'Electronics', products: 1250, icon: '💻' },
-  //   { id: 2, name: 'Apparel', products: 3420, icon: '👕' },
-  //   { id: 3, name: 'Home & Garden', products: 890, icon: '🏠' },
-  //   { id: 4, name: 'Beauty & Personal Care', products: 1560, icon: '💄' },
-  //   { id: 5, name: 'Industrial Equipment', products: 670, icon: '⚙️' },
-  //   { id: 6, name: 'Food & Beverage', products: 2300, icon: '🍎' },
-  //   { id: 7, name: 'Automotive', products: 980, icon: '🚗' },
-  //   { id: 8, name: 'Health & Medical', products: 750, icon: '🏥' },
-  // ];
-
   return (
     <div className="min-h-screen bg-[#eef4ff] dark:bg-gray-800 transition-colors duration-300">
       {/* Hero Section */}

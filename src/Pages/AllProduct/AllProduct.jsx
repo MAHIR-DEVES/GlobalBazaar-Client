@@ -102,7 +102,9 @@ const AllProduct = () => {
           {toggle ? 'Card View' : 'Table View'}
         </span>
       </div>
-      <h2>all products</h2>
+      <h2 className="font-semibold bg-[#eef4ff] dark:bg-gray-800 hover:bg-[#e0eaff] dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200">
+        All products
+      </h2>
       {toggle ? (
         <div className="">
           <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">

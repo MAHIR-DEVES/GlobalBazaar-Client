@@ -6,6 +6,7 @@ import { TabTitle } from '../../Layouts/Utils/DynamicTitle/DynamicTitle';
 import { FaRegStarHalfStroke } from 'react-icons/fa6';
 import CategoriesCard from '../../Components/categoriesCard/CategoriesCard';
 import AutoPlay from './AutoPlay';
+// import AutoPlay from './AutoPlay';
 
 const Home = () => {
   TabTitle('GlobalBazaar - Home');
@@ -61,7 +62,7 @@ const Home = () => {
         </div>
       </section>
       <section className="">
-        {/* <AutoPlay></AutoPlay> */}
+        <AutoPlay></AutoPlay>
         <div className="py-16 bg-white dark:bg-gray-800">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">

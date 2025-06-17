@@ -41,7 +41,7 @@ const ProductDetails = () => {
     productContent,
     price,
     rating,
-  } = data;
+  } = data || {};
 
   const convertQn = parseInt(minSellingQuantity);
   const [sellQuantity, setSellQuantity] = useState(convertQn);
@@ -128,7 +128,7 @@ const ProductDetails = () => {
       return toast.error('Minimum Quantity 50');
     }
     if (minSellingQuantity > quantity) {
-      return alert('cannot oder');
+      return toast.error('Not available Quantity ');
     }
 
     const orderData = {
