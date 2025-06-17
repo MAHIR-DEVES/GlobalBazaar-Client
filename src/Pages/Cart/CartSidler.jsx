@@ -13,7 +13,7 @@ const CompactCartMarquee = ({ orders = [] }) => {
           x: ['0%', '-100%'],
         }}
         transition={{
-          duration: 15, // Faster speed for compact version
+          duration: 15,
           ease: 'linear',
           repeat: Infinity,
         }}
@@ -25,22 +25,17 @@ const CompactCartMarquee = ({ orders = [] }) => {
             whileHover={{ scale: 1.03 }}
           >
             <div className="bg-white dark:bg-gray-700 p-3 rounded-lg shadow-sm w-48 flex flex-col">
-              {' '}
-              {/* Smaller dimensions */}
               <img
                 src={order.photo}
                 alt={order.name || 'Product image'}
-                className="w-full h-32 object-cover rounded-md mb-2 flex-shrink-0" // Smaller image
+                className="w-full h-32 object-cover rounded-md mb-2 flex-shrink-0"
               />
               <div className="flex-grow">
                 <h3 className="text-sm font-medium text-gray-900 dark:text-white truncate">
-                  {' '}
-                  {/* Smaller text */}
                   {order.name || 'Product'}
                 </h3>
                 <p className="text-xs text-gray-600 dark:text-gray-300 mt-1">
-                  {' '}
-                  {/* Smaller text */}${order.price || '0.00'}
+                  ${order.price || '0.00'}
                 </p>
               </div>
             </div>
