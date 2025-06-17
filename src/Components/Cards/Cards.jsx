@@ -168,14 +168,12 @@ const Cards = ({ product }) => {
               <span className=" hidden lg:flex">View</span> Details
             </button>
           </Link>
-          {/* <Link to={`/updatedProduct/${_id}`}> */}
           <button
             onClick={handelUpdate}
-            className="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-700 dark:hover:bg-indigo-600 text-white font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
+            className=" py-2 px-4 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-700 dark:hover:bg-indigo-600 text-white font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
           >
             <GrUpdate />
           </button>
-          {/* </Link> */}
 
           {/* Wishlist Button */}
           <button className="p-2 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">

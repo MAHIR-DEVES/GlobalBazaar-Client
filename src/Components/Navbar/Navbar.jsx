@@ -87,23 +87,6 @@ const Navbar = () => {
           <ul className="menu-horizontal px-1 navLink ">{links}</ul>
         </div>
         <div className="flex  justify-between lg:hidden ">
-          <div className="flex justify-center items-center ">
-            {user && (
-              <>
-                <img
-                  className=" w-10 rounded-full mr-4"
-                  src={user.photoURL || ''}
-                  alt="Profile"
-                  data-tooltip-id="mobile-profile-tooltip"
-                  data-tooltip-content={user.displayName}
-                />
-                <Tooltip
-                  id="mobile-profile-tooltip"
-                  className="z-50 !bg-black !text-white !text-sm !px-3 !py-1 !rounded"
-                />
-              </>
-            )}
-          </div>
           <div className="flex justify-center items-center">
             {user ? (
               <>
