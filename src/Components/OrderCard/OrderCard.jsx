@@ -17,20 +17,25 @@ const OrderCard = ({ order, setOrders, orders }) => {
       confirmButtonText: 'Yes, delete it!',
     }).then(result => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:3000/orders/${_id}`).then(res => {
-          if (res?.data?.deletedCount) {
-            const remainingData = orders.filter(pot => pot._id !== id);
-            setOrders(remainingData);
-            Swal.fire({
-              title: 'Deleted!',
-              text: 'Your file has been deleted.',
-              icon: 'success',
-            });
-          }
-          axios.patch(`http://localhost:3000/addUpdateQuantity/${orderId}`, {
-            updateQuantity: { quantity },
+        axios
+          .delete(`https://b11-assignment-11.vercel.app/orders/${_id}`)
+          .then(res => {
+            if (res?.data?.deletedCount) {
+              const remainingData = orders.filter(pot => pot._id !== id);
+              setOrders(remainingData);
+              Swal.fire({
+                title: 'Deleted!',
+                text: 'Your file has been deleted.',
+                icon: 'success',
+              });
+            }
+            axios.patch(
+              `https://b11-assignment-11.vercel.app/addUpdateQuantity/${orderId}`,
+              {
+                updateQuantity: { quantity },
+              }
+            );
           });
-        });
       }
     });
   };

@@ -3,7 +3,7 @@ import { use } from 'react';
 import { AuthContext } from '../Provider/AuthProvider/AuthProvider';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: 'https://b11-assignment-11.vercel.app',
   withCredentials: true,
 });
 
