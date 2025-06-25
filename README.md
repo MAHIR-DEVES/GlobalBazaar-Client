@@ -1,34 +1,116 @@
+# GlobalBazaar - E-commerce Frontend
+
 🌐 Global Bazaar Live Site: https://windy-cast.surge.sh
 
-Global Bazaar is a B2B global business platform that connects businesses from
-around the world. This website includes essential features for users to explore,
-manage, and interact with global products and categories.
+![React](https://img.shields.io/badge/React-18.x-blue)
+![Vite](https://img.shields.io/badge/Vite-4.x-yellow)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.x-cyan)
 
-✨ Features 🔐 Authentication System Users can register, log in, and log out
-securely using Firebase.
+This repository contains the **frontend** of GlobalBazaar, an e-commerce
+platform built with React, Vite, and TailwindCSS.
 
-🗂️ Categories There’s a category section. If anyone clicks on a category, it
-shows filtered products related to that category.
+## ✨ Key Features
 
-🛒 All Products Page From the All Products route, users can see all the products
-listed on the site.
+- **Product Catalog** with filtering by category
+- **Shopping Cart** functionality
+- **JWT Authentication** (Login/Register)
+- **Order Management**
+- **Responsive Design** for all devices
 
-📦 Product Details & Ordering Every product has a Details button. From there:
+## 🛠 Tech Stack
 
-Users can place an order
+- **Frontend**: React.js
+- **Styling**: TailwindCSS + DaisyUI
+- **State Management**: React Query / Context API
+- **Routing**: React Router DOM
+- **Build Tool**: Vite
 
-Or cancel their order if needed
+## 🚀 Setup Instructions
 
-🧾 My Products Users can view only the products they posted.
+### Prerequisites
 
-➕ Add Product Users can add new products through the Add Product page.
+1. Node.js (v18+)
+2. Yarn or npm
 
-🧩 Technologies & Packages Used Technology Purpose React Frontend framework
-Tailwind CSS Styling DaisyUI UI components Firebase Authentication JWT Securing
-API access / Authorization Axios API requests React Router Routing system React
-Hook Form Form management React Toastify Notifications SweetAlert2 Nice popup
-alerts Framer Motion Animations Motion Plus Animation extensions React Icons
-Icon support React Slick & Swiper Carousels and sliders React Loader Spinner
-Loading spinners React Tooltip Tooltips Prop Types Type checking for React props
+### Installation
 
-🧑‍💻 Author Made with ❤️ by Mahir Daves
+```bash
+# 1. Clone the repository
+git clone <frontend-repo-url>
+cd globalbazaar-frontend
+
+# 2. Install dependencies
+yarn install  # or npm install
+
+# 3. Configure environment variables
+Create a .env file with:
+VITE_API_BASE_URL=http://localhost:3000
+```
+
+### Running the App
+
+```bash
+yarn dev  # or npm run dev
+```
+
+App will run at: [http://localhost:5173](http://localhost:5173)
+
+## 📂 Project Structure
+
+```
+src/
+├── assets/          # Static assets
+├── components/      # Reusable components
+├── contexts/        # Context providers
+├── hooks/           # Custom hooks
+├── pages/           # Page components
+├── routes/          # App routing
+├── services/        # API service functions
+├── styles/          # Global styles
+└── utils/           # Utility functions
+```
+
+## 🔗 API Integration
+
+The frontend communicates with these backend endpoints:
+
+### Authentication
+
+```js
+POST / jwt; // Gets JWT token
+```
+
+### Products
+
+```js
+GET /get-allProducts         // All products
+GET /singleProduct/:id       // Single product details
+GET /filterCategory?category=:category  // Filter by category
+```
+
+### Orders
+
+```js
+POST /orders                // Create new order
+GET /getAllOrder/:email     // Get user's orders
+DELETE /orders/:id          // Cancel order
+```
+
+## 🌟 Additional Features
+
+- **Marquee Animation** for featured products
+- **Quantity Update** system
+- **Toast Notifications** for user actions
+- **Loading Skeletons** for better UX
+
+## 📜 License
+
+MIT License
+
+---
+
+**Note for Developers**:
+
+- Always use environment variables for API base URLs
+- Implement proper error handling for API calls
+- Follow React best practices for component structure
