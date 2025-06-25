@@ -51,7 +51,6 @@ const router = createBrowserRouter([
             <AllProduct></AllProduct>
           </PrivateRoute>
         ),
-        // loader: () => fetch(''),
       },
       {
         path: '/productDetails/:id',
@@ -87,7 +86,7 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `https://b11-assignment-11.vercel.app/singleProduct/${params.id}`
+            `https://b11-assignment-11.vercel.app/singleProductUpdate/${params.id}`
           ),
       },
       {

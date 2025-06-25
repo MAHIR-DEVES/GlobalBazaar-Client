@@ -60,7 +60,7 @@ const MyProductTable = ({ product, myProducts, setMyProducts }) => {
           </div>
           <div className="ml-3 sm:ml-4">
             <div className="text-sm font-medium text-gray-900 dark:text-gray-100 line-clamp-1">
-              {name?.title || 'No name'}
+              {name || 'No name'}
             </div>
             <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
               {brand || 'No brand'}

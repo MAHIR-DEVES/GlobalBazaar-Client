@@ -43,8 +43,15 @@ const ProductDetails = () => {
     rating,
   } = data || {};
 
-  const convertQn = parseInt(minSellingQuantity);
-  const [sellQuantity, setSellQuantity] = useState(convertQn);
+  // const convertQn = parseInt(minSellingQuantity);
+  const [sellQuantity, setSellQuantity] = useState(0);
+
+  useEffect(() => {
+    if (minSellingQuantity) setSellQuantity(parseFloat(minSellingQuantity));
+  }, [minSellingQuantity]);
+  console.log(minSellingQuantity);
+
+  console.log(sellQuantity);
 
   // Generate star rating display
   const renderStars = () => {
@@ -124,10 +131,10 @@ const ProductDetails = () => {
     const name = formData.get('name');
     const email = formData.get('email');
 
-    if (sellQuantity < 50) {
-      return toast.error('Minimum Quantity 50');
+    if (sellQuantity < parseFloat(minSellingQuantity)) {
+      return toast.error(`Minimum Quantity ${minSellingQuantity}`);
     }
-    if (minSellingQuantity > quantity) {
+    if (sellQuantity > parseFloat(quantity)) {
       return toast.error('Not available Quantity ');
     }
 
@@ -255,9 +262,14 @@ const ProductDetails = () => {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <button
                     onClick={handleModalOpen}
-                    className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200"
+                    disabled={
+                      parseFloat(minSellingQuantity) > parseFloat(quantity)
+                    }
+                    className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 disabled:cursor-not-allowed"
                   >
-                    Buy Now
+                    {parseFloat(minSellingQuantity) > parseFloat(quantity)
+                      ? 'Out of stock'
+                      : ' Buy Now'}
                   </button>
                   <button
                     onClick={() => navigate(-1)}
