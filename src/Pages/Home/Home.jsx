@@ -379,6 +379,158 @@ const Home = () => {
           animation: float-delay 6s ease-in-out infinite;
         }
       `}</style>
+
+      {/* ?offer */}
+      <section className="py-16 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="inline-block px-3 py-1 text-sm font-semibold text-blue-600 bg-blue-100 rounded-full mb-4 dark:bg-blue-900/30 dark:text-blue-300">
+              Limited Time Offers
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold dark:text-white text-gray-900 mb-4">
+              Exclusive Business Deals
+            </h2>
+            <p className="text-lg dark:text-gray-300 text-gray-600 max-w-2xl mx-auto">
+              Special discounts and offers for our valued partners and customers
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Offer 1 */}
+            <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+              <div className="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                30% OFF
+              </div>
+              <div className="h-48 bg-gradient-to-r from-blue-500 to-indigo-600 flex items-center justify-center">
+                <svg
+                  className="w-20 h-20 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                  />
+                </svg>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  Enterprise SaaS Bundle
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                  Get our complete business software suite at a discounted rate
+                </p>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <span className="text-sm text-gray-500 line-through">
+                      $1,499/mo
+                    </span>
+                    <span className="block text-2xl font-bold text-blue-600 dark:text-blue-400">
+                      $1,049/mo
+                    </span>
+                  </div>
+                  <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
+                    Claim Offer
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Offer 2 */}
+            <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+              <div className="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                FREE SHIPPING
+              </div>
+              <div className="h-48 bg-gradient-to-r from-green-500 to-teal-600 flex items-center justify-center">
+                <svg
+                  className="w-20 h-20 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"
+                  />
+                </svg>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  Global Logistics Package
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                  Free shipping on all international orders over $5,000
+                </p>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <span className="text-sm text-gray-500">
+                      Normally $299+
+                    </span>
+                    <span className="block text-2xl font-bold text-green-600 dark:text-green-400">
+                      $0
+                    </span>
+                  </div>
+                  <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors">
+                    Get Deal
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Offer 3 */}
+            <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+              <div className="absolute top-4 right-4 bg-purple-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                BULK DEAL
+              </div>
+              <div className="h-48 bg-gradient-to-r from-purple-500 to-pink-600 flex items-center justify-center">
+                <svg
+                  className="w-20 h-20 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                  />
+                </svg>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  Wholesale Purchase Bonus
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                  Buy 100+ units and get 15% extra products free
+                </p>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <span className="text-sm text-gray-500">Minimum order</span>
+                    <span className="block text-2xl font-bold text-purple-600 dark:text-purple-400">
+                      100 units
+                    </span>
+                  </div>
+                  <button className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors">
+                    Order Now
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
