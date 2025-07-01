@@ -1,16 +1,11 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router';
+import { Link } from 'react-router';
 import { GrUpdate } from 'react-icons/gr';
 
 const Cards = ({ product }) => {
   const { _id, imageUrl, name, brand, category, rating, quantity, price } =
     product;
 
-  const navigate = useNavigate();
-
-  const handelUpdate = () => {
-    navigate(`/updatedProduct/${_id}`);
-  };
   return (
     <div className="w-full rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 hover:-translate-y-1 group/card">
       {/* Product Image with Hover Effects */}
@@ -168,12 +163,6 @@ const Cards = ({ product }) => {
               <span className=" hidden lg:flex">View</span> Details
             </button>
           </Link>
-          <button
-            onClick={handelUpdate}
-            className=" py-2 px-4 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-700 dark:hover:bg-indigo-600 text-white font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
-          >
-            <GrUpdate />
-          </button>
 
           {/* Wishlist Button */}
           <button className="p-2 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">

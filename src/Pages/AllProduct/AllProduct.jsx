@@ -10,6 +10,7 @@ const AllProduct = () => {
   TabTitle('GlobalBazaar - All Product');
   const [products, setProducts] = useState([]);
   const [toggle, setToggle] = useState(false);
+  const [asc, setAsc] = useState('asc');
   const [loading, setLoading] = useState(true);
 
   const axiosSecure = useAxiosSecure();
@@ -26,26 +27,43 @@ const AllProduct = () => {
   }, [axiosSecure]);
 
   const handelFilter = () => {
-    console.log('filter');
+    setLoading(true);
     axiosSecure('https://b11-assignment-11.vercel.app/filter-product')
       .then(res => {
         setProducts(res.data);
-        console.log(res.data);
+        setLoading(false);
       })
       .catch(err => {
         console.log(err);
       });
   };
   const handelAllProduct = () => {
+    setLoading(true);
     axiosSecure('https://b11-assignment-11.vercel.app/get-allProducts')
       .then(res => {
         setProducts(res.data);
-        console.log(res.data);
+        setLoading(false);
       })
       .catch(err => {
         console.log(err);
       });
   };
+
+  const handelShorting = () => {
+    setLoading(true);
+    axiosSecure(
+      `https://b11-assignment-11.vercel.app/sort-by-price?order=${asc}`
+    )
+      .then(res => {
+        setProducts(res.data);
+        console.log(res.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   if (loading) {
     return <Loading></Loading>;
   }
@@ -101,6 +119,17 @@ const AllProduct = () => {
             className=" bg-indigo-600 font-medium py-3 px-4 rounded-lg transition text-white "
           >
             {toggle ? 'Card View' : 'Table View'}
+          </span>
+        </div>
+        <div>
+          <span
+            onClick={() => {
+              setAsc(prev => (prev === 'asc' ? 'desc' : 'asc'));
+              handelShorting();
+            }}
+            className="bg-indigo-600 font-medium py-3 px-4 rounded-lg transition text-white cursor-pointer"
+          >
+            {asc === 'asc' ? 'Low Price' : 'High Price'}
           </span>
         </div>
       </div>

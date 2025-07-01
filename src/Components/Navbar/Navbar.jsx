@@ -52,7 +52,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="px-2 lg:px-0  bg-[#ffffff] dark:bg-[#2F2F2F] text-white shadow-sm py-5 md:py-6 ">
+    <div className="px-2 lg:px-0  bg-[#ffffff] dark:bg-[#2F2F2F] text-white shadow-sm py-5 md:py-6 sticky top-0 z-50">
       <div className="navMenu flex justify-between items-center lg:w-11/12 md:mx-auto">
         <div className="flex items-center ">
           <div className="dropdown mr-2">
