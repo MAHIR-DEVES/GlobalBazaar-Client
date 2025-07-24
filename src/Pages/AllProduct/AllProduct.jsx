@@ -69,7 +69,7 @@ const AllProduct = () => {
   }
 
   return (
-    <div className="">
+    <div className="md:w-11/12 mx-auto">
       <div className="text-right py-5 cursor-pointer space-x-2 flex items-center">
         <div className="dropdown z-10">
           <div

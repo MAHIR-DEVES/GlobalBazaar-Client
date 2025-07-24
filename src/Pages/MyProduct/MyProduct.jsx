@@ -34,7 +34,7 @@ const MyProduct = () => {
   }
 
   return (
-    <div>
+    <div className="md:w-11/12 mx-auto">
       {myProducts.length === 0 ? (
         <div className="min-h-screen bg-[#eef4ff] dark:bg-gray-800 transition-colors duration-300 p-4 md:p-6">
           <div className="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden">

@@ -101,7 +101,7 @@ const ProductCategories = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 w-full px-2 md:px-0 gap-2 md:gap-4 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 w-full px-2 md:px-0 gap-2 md:gap-4 mt-10 md:w-11/12 mx-auto mb-5">
         {data?.map(dat => (
           <ProductCategoriesCard
             key={dat._id}

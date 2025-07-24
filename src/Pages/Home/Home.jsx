@@ -19,7 +19,7 @@ const Home = () => {
       <Slider />
 
       <section className="py-12 lg:px-4 sm:px-6  lg:w-10/12 mx-auto ">
-        <div className="text-center mb-12  bg-white dark:bg-gray-800">
+        <div className="text-center mb-12  bg-white dark:bg-gray-800 px-2 md:px-0">
           <span className="inline-block px-3 py-1 text-sm font-semibold text-red-600 bg-red-100 rounded-full mb-4">
             Category
           </span>
@@ -30,7 +30,7 @@ const Home = () => {
             Explore the most popular restaurant posts in your area
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-3 md:px-0">
           {categories.map(category => (
             <CategoriesCard
               categories={categories}

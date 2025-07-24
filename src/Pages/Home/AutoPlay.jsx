@@ -20,12 +20,12 @@ function AutoPlay() {
   }, []);
 
   return (
-    <div className="bg-[#eef4ff] dark:bg-gray-800 py-12  sm:px-6 lg:px-8">
+    <div className=" bg-[#eef4ff] dark:bg-gray-800 py-12  sm:px-6 lg:px-8">
       <div className="w-full">
         <h2 className="text-3xl font-bold dark:text-white text-black mb-8 text-center">
           Featured Collections
         </h2>
-        <div className="flex ">
+        <div className="flex md:w-10/12 mx-auto">
           <SlidesCard slides={slides}></SlidesCard>
         </div>
       </div>
